@@ -1,6 +1,29 @@
 <?php
 
 class LicenseServer extends Wpup_UpdateServer {
+	protected $db;
+
+	public function __construct($serverUrl = null, $db = null) {
+		parent::__construct($serverUrl);
+
+		if ( $db === null ) {
+			if ( !file_exists(DB_FILE) ) {
+				$db = new SQLite3(DB_FILE, SQLITE3_OPEN_CREATE | SQLITE3_OPEN_READWRITE);
+				$sql_script = file_get_contents(LICENSES_SQL_FILE);
+    			$db->exec($sql_script);
+			} else {
+				$db = new SQLite3(DB_FILE, SQLITE3_OPEN_READWRITE);
+			}
+		}
+		$this->db = $db;
+	}
+
+	public function __destruct() {
+		if ( $this->db ) {
+			$this->db->close();
+		}
+	}
+
 	protected function dispatch($request) {
 		if ( $request->action === 'get_metadata' ) {
 			$this->actionGetMetadata($request);

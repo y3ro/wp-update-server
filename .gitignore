@@ -1,3 +1,4 @@
 packages/*.zip
 cache/*.txt
 logs/*.log
+db.sqlite
