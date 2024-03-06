@@ -8,6 +8,7 @@ require_once __DIR__ . '/includes/Wpup/Cache.php';
 require_once __DIR__ . '/includes/Wpup/FileCache.php';
 require_once __DIR__ . '/includes/Wpup/UpdateServer.php';
 require_once __DIR__ . '/includes/LicenseServer/LicenseServer.php';
+require_once __DIR__ . '/settings.php';
 
 if ( !class_exists('WshWordPressPackageParser') ) {
 	require_once __DIR__ . '/includes/extension-meta/extension-meta.php';
