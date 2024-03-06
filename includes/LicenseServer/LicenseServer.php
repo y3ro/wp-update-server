@@ -29,6 +29,8 @@ class LicenseServer extends Wpup_UpdateServer {
 			$this->actionGetMetadata($request);
 		} else if ( $request->action === 'download' ) {
 			$this->actionDownload($request);
+		} else if ( $request->action === 'create_license' ) {
+			$this->actionCreateLicense($request); 
 		} else if ( $request->action === 'check_license ') {
 			$this->actionCheckLicense($request);
 		} else if ( $request->action === 'register_license' ) {
@@ -48,6 +50,10 @@ class LicenseServer extends Wpup_UpdateServer {
 	
 	protected function actionDownload(Wpup_Request $request) {
 		$this->exitWithError('Downloads are disabled.', 403);
+	}
+
+	protected function actionCreateLicense(Wpup_Request $request) {
+		$this->exitWithError('License creation is disabled.', 403);
 	}
 
 	protected function actionCheckLicense(Wpup_Request $request) {
